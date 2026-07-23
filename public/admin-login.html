@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══ PRIMARY SEO ═══ -->
+  <title>NOXXY Admin Login — Temporary Email Service</title>
+  <meta name="description" content="Sign in to the NOXXY admin panel to manage your temporary email service." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#6366f1" />
+
+  <!-- ═══ FAVICON ═══ -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+
+  <!-- ═══ FONTS ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #07070e;
+      --card: #0f0f1a;
+      --border: rgba(255,255,255,0.08);
+      --border-focus: rgba(99,102,241,0.5);
+      --text: #eeeef5;
+      --text-2: #8888a8;
+      --text-3: #4a4a6a;
+      --accent: #6366f1;
+      --accent-hover: #7c7fff;
+      --accent-glow: rgba(99,102,241,0.25);
+      --danger: #ef4444;
+      --sans: "Space Grotesk", system-ui, sans-serif;
+      --mono: "Fira Code", "JetBrains Mono", monospace;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── ANIMATED BACKGROUND ── */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 100%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.06) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: beamFloat 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes beamFloat {
+      0%   { transform: translateX(-50%) translateY(0px); }
+      100% { transform: translateX(-50%) translateY(25px); }
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
+      top: -10%; left: -15%;
+      animation: orbFloat 20s ease-in-out infinite alternate;
+    }
+
+    .orb-2 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%);
+      bottom: -5%; right: -10%;
+      animation: orbFloat 25s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes orbFloat {
+      0%   { transform: translate(0px, 0px); }
+      50%  { transform: translate(15px, -10px); }
+      100% { transform: translate(-10px, 15px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body::after, .orb-1, .orb-2 { animation: none; }
+    }
+
+    .card, .footer-note { position: relative; z-index: 1; }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px 32px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      color: #fff;
+      box-shadow: 0 0 20px var(--accent-glow);
+      flex-shrink: 0;
+    }
+
+    .brand-info h1 {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+
+    .brand-info p {
+      font-size: 11.5px;
+      color: var(--text-3);
+      margin-top: 1px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 24px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-2);
+      margin-bottom: 7px;
+      letter-spacing: 0.02em;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-3);
+      pointer-events: none;
+      display: flex;
+    }
+
+    input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 14px;
+      padding: 11px 13px 11px 38px;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+
+    input:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+    }
+
+    input::placeholder { color: var(--text-3); }
+
+    .toggle-pass {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-3);
+      padding: 2px;
+      display: flex;
+      transition: color 0.15s;
+    }
+    .toggle-pass:hover { color: var(--text-2); }
+
+    .btn-login {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-login:hover:not(:disabled) { background: var(--accent-hover); box-shadow: 0 0 24px var(--accent-glow); }
+    .btn-login:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-login .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    .btn-login.loading .spinner { display: block; }
+    .btn-login.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-box {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 9px;
+      padding: 10px 13px;
+      font-size: 13px;
+      color: var(--danger);
+      margin-top: 14px;
+    }
+    .error-box.show { display: flex; }
+    .error-box svg { flex-shrink: 0; }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 24px;
+    }
+
+    .footer-note a {
+      color: var(--text-2);
+      text-decoration: none;
+    }
+    .footer-note a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+
+  <div class="card">
+    <div class="brand">
+      <div class="brand-mark" style="width:36px;height:36px;background:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ng-depth" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#312e81"/><stop offset="100%" stop-color="#1e1b4b"/></linearGradient>
+            <linearGradient id="ng-body" x1="0.1" y1="0" x2="0.9" y2="1"><stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#4338ca"/></linearGradient>
+            <linearGradient id="ng-flap" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0%" stop-color="#c7d2fe"/><stop offset="100%" stop-color="#6366f1"/></linearGradient>
+            <linearGradient id="ng-gloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.5)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+            <filter id="ng-shad" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#1e1b4b" flood-opacity="0.55"/></filter>
+          </defs>
+          <rect x="5" y="17" width="26" height="16" rx="3.5" fill="url(#ng-depth)" opacity="0.85"/>
+          <rect x="5" y="14" width="26" height="16" rx="3.5" fill="url(#ng-body)" filter="url(#ng-shad)"/>
+          <path d="M5 19L18 27.5L31 19V17.5Q31 14 28 14H8Q5 14 5 17.5Z" fill="url(#ng-flap)"/>
+          <path d="M5 19L18 27.5L31 19" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+          <rect x="5" y="14" width="26" height="9" rx="3.5" fill="url(#ng-gloss)" opacity="0.55"/>
+        </svg>
+      </div>
+      <div class="brand-info">
+        <h1>NOXXY</h1>
+        <p>Admin Panel</p>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <form id="loginForm" autocomplete="off">
+      <div class="field">
+        <label for="username">Username</label>
+        <div class="input-wrap">
+          <span class="input-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+          </span>
+          <input type="text" id="username" name="username" placeholder="Enter username" autocomplete="off" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <span class="input-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+          </span>
+          <input type="password" id="password" name="password" placeholder="Enter password" autocomplete="new-password" required />
+          <button type="button" class="toggle-pass" id="togglePass" aria-label="Toggle password visibility">
+            <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-login" id="submitBtn">
+        <span class="btn-text">Sign in to Admin</span>
+        <div class="spinner"></div>
+      </button>
+
+      <div class="error-box" id="errorBox">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+        <span id="errorMsg">Invalid credentials</span>
+      </div>
+    </form>
+  </div>
+
+  <div class="footer-note">
+    <a href="/">Back to inbox</a>
+  </div>
+
+<script>
+  const pass = document.getElementById("password");
+  const eye = document.getElementById("eyeIcon");
+  document.getElementById("togglePass").addEventListener("click", () => {
+    const show = pass.type === "password";
+    pass.type = show ? "text" : "password";
+    eye.innerHTML = show
+      ? '<path d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"/>'
+      : '<path d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>';
+  });
+
+  document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById("submitBtn");
+    const errBox = document.getElementById("errorBox");
+    const errMsg = document.getElementById("errorMsg");
+    errBox.classList.remove("show");
+    btn.classList.add("loading");
+    btn.disabled = true;
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+
+    try {
+      const r = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await r.json();
+      if (data.success) {
+        window.location.href = "/admin.html";
+      } else {
+        errMsg.textContent = data.error || "Invalid credentials";
+        errBox.classList.add("show");
+      }
+    } catch {
+      errMsg.textContent = "Network error, please try again";
+      errBox.classList.add("show");
+    } finally {
+      btn.classList.remove("loading");
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>

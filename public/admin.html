@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══ PRIMARY SEO ═══ -->
+  <title>NOXXY Dashboard — Temporary Email</title>
+  <meta name="description" content="NOXXY admin dashboard. Manage disposable email inboxes, view analytics, and control your temporary email service." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#6366f1" />
+
+  <!-- ═══ FAVICON ═══ -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+
+  <!-- ═══ FONTS ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <!-- BACKGROUND -->
+  <div class="admin-bg-canvas" aria-hidden="true">
+    <div class="admin-orb admin-orb-1"></div>
+    <div class="admin-orb admin-orb-2"></div>
+  </div>
+
+  <div id="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:none;flex-shrink:0;">
+          <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="ng-depth" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#312e81"/><stop offset="100%" stop-color="#1e1b4b"/></linearGradient>
+              <linearGradient id="ng-body" x1="0.1" y1="0" x2="0.9" y2="1"><stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#4338ca"/></linearGradient>
+              <linearGradient id="ng-flap" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0%" stop-color="#c7d2fe"/><stop offset="100%" stop-color="#6366f1"/></linearGradient>
+              <linearGradient id="ng-gloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.5)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></linearGradient>
+              <filter id="ng-shad" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#1e1b4b" flood-opacity="0.55"/></filter>
+            </defs>
+            <rect x="5" y="17" width="26" height="16" rx="3.5" fill="url(#ng-depth)" opacity="0.85"/>
+            <rect x="5" y="14" width="26" height="16" rx="3.5" fill="url(#ng-body)" filter="url(#ng-shad)"/>
+            <path d="M5 19L18 27.5L31 19V17.5Q31 14 28 14H8Q5 14 5 17.5Z" fill="url(#ng-flap)"/>
+            <path d="M5 19L18 27.5L31 19" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="0.8"/>
+            <rect x="5" y="14" width="26" height="9" rx="3.5" fill="url(#ng-gloss)" opacity="0.55"/>
+          </svg>
+        </div>
+        <span class="brand-name">NOXXY</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="inbox" title="Inbox">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z"/></svg>
+          <span>Inbox</span>
+        </button>
+        <button class="nav-item" data-view="history" title="History">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <span>History</span>
+        </button>
+        <button class="nav-item" data-view="analytics" title="Analytics">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>
+          <span>Analytics</span>
+        </button>
+        <button class="nav-item" data-view="settings" title="Settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="connection-status" id="connectionStatus">
+          <span class="status-dot" id="statusDot"></span>
+          <span class="status-text" id="statusText">Connecting</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <button class="sidebar-toggle" id="sidebarToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+
+        <div class="address-bar">
+          <div class="address-display" id="addressDisplay">
+            <span class="address-text" id="currentAddress">Generating...</span>
+          </div>
+          <div class="address-actions">
+            <button class="btn btn-ghost btn-sm" id="copyBtn" title="Copy address">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+              <span>Copy</span>
+            </button>
+            <button class="btn btn-primary btn-sm" id="generateBtn" title="Generate new inbox">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+              <span>Generate</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="domain-selector">
+          <label class="domain-label">Domain</label>
+          <select class="domain-select" id="domainSelect"></select>
+        </div>
+
+        <div class="custom-address-toggle">
+          <button class="btn btn-ghost btn-sm" id="customToggle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"/></svg>
+            Custom
+          </button>
+        </div>
+      </header>
+
+      <!-- CUSTOM ADDRESS FORM -->
+      <div class="custom-address-form hidden" id="customAddressForm">
+        <div class="custom-form-inner">
+          <input type="text" class="custom-input" id="customUsername" placeholder="username" maxlength="30" />
+          <span class="at-sign">@</span>
+          <select class="custom-domain-select" id="customDomainSelect"></select>
+          <button class="btn btn-primary btn-sm" id="customGenerateBtn">Create</button>
+          <button class="btn btn-ghost btn-sm" id="customCancelBtn">Cancel</button>
+        </div>
+        <p class="custom-hint">Letters, numbers, dots, hyphens only (3-30 chars)</p>
+      </div>
+
+      <!-- VIEW CONTAINER -->
+      <div class="view-container">
+
+        <!-- INBOX VIEW -->
+        <div class="view active" id="view-inbox">
+          <div class="inbox-layout">
+            <!-- Email List -->
+            <div class="email-list-panel">
+              <div class="panel-header">
+                <h2 class="panel-title" id="emailCount">Inbox</h2>
+                <div class="panel-actions">
+                  <button class="btn btn-ghost btn-xs" id="refreshBtn" title="Refresh">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="email-list" id="emailList">
+                <div class="empty-state" id="emptyState">
+                  <div class="empty-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z"/></svg>
+                  </div>
+                  <h3>Waiting for emails</h3>
+                  <p>Your inbox is ready. Emails sent to your address will appear here instantly.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email Viewer -->
+            <div class="email-viewer-panel" id="emailViewer">
+              <div class="viewer-placeholder" id="viewerPlaceholder">
+                <div class="placeholder-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+                </div>
+                <h3>Select an email</h3>
+                <p>Choose an email from the list to read it here.</p>
+              </div>
+              <div class="email-content hidden" id="emailContent">
+                <div class="email-header">
+                  <div class="email-meta">
+                    <div class="sender-avatar" id="senderAvatar"></div>
+                    <div class="email-info">
+                      <div class="email-subject-full" id="emailSubjectFull"></div>
+                      <div class="email-from-full" id="emailFromFull"></div>
+                      <div class="email-date-full" id="emailDateFull"></div>
+                    </div>
+                  </div>
+                  <div class="email-actions">
+                    <button class="btn btn-ghost btn-sm" id="viewSourceBtn">Source</button>
+                    <button class="btn btn-ghost btn-sm" id="viewHeadersBtn">Headers</button>
+                    <button class="btn btn-destructive btn-sm" id="deleteEmailBtn">Delete</button>
+                  </div>
+                </div>
+                <div class="email-render-tabs">
+                  <button class="render-tab active" data-tab="html">HTML</button>
+                  <button class="render-tab" data-tab="text">Text</button>
+                </div>
+                <div class="email-body">
+                  <div class="email-body-html" id="emailBodyHtml">
+                    <iframe id="emailFrame" sandbox="allow-same-origin" title="Email content"></iframe>
+                  </div>
+                  <div class="email-body-text hidden" id="emailBodyText"></div>
+                </div>
+                <div class="email-attachments" id="emailAttachments"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HISTORY VIEW -->
+        <div class="view hidden" id="view-history">
+          <div class="view-inner">
+            <div class="view-title-bar">
+              <h2>Session History</h2>
+              <p>Inboxes created in this browser session.</p>
+            </div>
+            <div class="history-list" id="historyList"></div>
+          </div>
+        </div>
+
+        <!-- ANALYTICS VIEW -->
+        <div class="view hidden" id="view-analytics">
+          <div class="view-inner">
+            <div class="view-title-bar">
+              <h2>Analytics</h2>
+              <p>Email activity for your current inbox.</p>
+            </div>
+            <div class="analytics-grid" id="analyticsGrid">
+              <div class="stat-card">
+                <div class="stat-label">Total Received</div>
+                <div class="stat-value" id="statTotal">0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Unread</div>
+                <div class="stat-value" id="statUnread">0</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Inbox Age</div>
+                <div class="stat-value" id="statAge">—</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Expires In</div>
+                <div class="stat-value" id="statExpiry">—</div>
+              </div>
+            </div>
+            <div class="spam-analysis" id="spamAnalysis"></div>
+          </div>
+        </div>
+
+        <!-- SETTINGS VIEW -->
+        <div class="view hidden" id="view-settings">
+          <div class="view-inner">
+            <div class="view-title-bar">
+              <h2>Settings</h2>
+              <p>Manage your inbox preferences.</p>
+            </div>
+            <div class="settings-section">
+              <h3 class="settings-heading">Inbox</h3>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <span class="setting-name">Current Address</span>
+                  <span class="setting-desc" id="settingAddress">—</span>
+                </div>
+                <button class="btn btn-ghost btn-sm" id="settingCopyBtn">Copy</button>
+              </div>
+              <div class="setting-row">
+                <div class="setting-info">
+                  <span class="setting-name">Expiration</span>
+                  <span class="setting-desc">Inboxes expire after 24 hours</span>
+                </div>
+              </div>
+            </div>
+            <div class="settings-section">
+              <h3 class="settings-heading">Danger Zone</h3>
+              <div class="setting-row danger">
+                <div class="setting-info">
+                  <span class="setting-name">Clear All Emails</span>
+                  <span class="setting-desc">Permanently delete all emails in this inbox</span>
+                </div>
+                <button class="btn btn-destructive btn-sm" id="clearAllBtn">Clear All</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- SOURCE MODAL -->
+  <div class="modal hidden" id="sourceModal">
+    <div class="modal-backdrop" id="sourceModalBackdrop"></div>
+    <div class="modal-box modal-large">
+      <div class="modal-header">
+        <h3>Email Source</h3>
+        <button class="modal-close" id="sourceModalClose">&times;</button>
+      </div>
+      <pre class="source-code" id="sourceCode"></pre>
+    </div>
+  </div>
+
+  <!-- HEADERS MODAL -->
+  <div class="modal hidden" id="headersModal">
+    <div class="modal-backdrop" id="headersModalBackdrop"></div>
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Email Headers</h3>
+        <button class="modal-close" id="headersModalClose">&times;</button>
+      </div>
+      <div class="headers-list" id="headersList"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

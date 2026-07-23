@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NOXXY — Email Sementara yang Cepat dan Privat</title>
+  <meta name="description" content="Buat alamat email sementara dalam hitungan detik. Tanpa registrasi, tanpa spam, dan inbox diperbarui secara realtime.">
+  <meta name="author" content="NOXXY TECH">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0f1c">
+  <link rel="canonical" href="https://nagetha.vtech.biz.id/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="NOXXY — Email Sementara">
+  <meta property="og:description" content="Inbox sementara yang cepat, privat, dan siap digunakan tanpa registrasi.">
+  <meta property="og:image" content="https://nagetha.vtech.biz.id/logo-mark.png">
+  <meta property="og:url" content="https://nagetha.vtech.biz.id/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NOXXY — Email Sementara">
+  <meta name="twitter:description" content="Inbox sementara yang cepat, privat, dan siap digunakan tanpa registrasi.">
+  <link rel="icon" href="/logo-mark.png" type="image/png">
+  <link rel="apple-touch-icon" href="/logo-mark.png">
+  <link rel="stylesheet" href="/css/home.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebApplication","name":"NOXXY","url":"https://nagetha.vtech.biz.id/","description":"Layanan email sementara gratis tanpa registrasi.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"IDR"}}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#mailbox">Langsung ke inbox</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/" aria-label="NOXXY beranda">
+        <span class="brand-mark">
+          <img src="/logo-mark.png" alt="" width="32" height="32">
+        </span>
+        <span>NOXXY</span>
+      </a>
+
+      <div class="service-status is-connecting" id="serviceStatus" role="status" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="statusText">Menghubungkan</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <span class="eyebrow">EMAIL SEMENTARA, TANPA RIBET</span>
+        <h1 id="heroTitle">Jaga inbox utama tetap bersih.</h1>
+        <p>Buat alamat email sekali pakai untuk verifikasi, uji coba, dan pendaftaran singkat. Langsung aktif tanpa akun.</p>
+      </div>
+
+      <div class="trust-list" aria-label="Keunggulan layanan">
+        <span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg>
+          Tanpa registrasi
+        </span>
+        <span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 4.8 3.4 8.4 8 9 4.6-.6 8-4.2 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+          Privasi terjaga
+        </span>
+        <span>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+          Aktif seketika
+        </span>
+      </div>
+    </section>
+
+    <section class="mailbox" id="mailbox" aria-label="Aplikasi email sementara">
+      <div class="address-panel">
+        <div class="address-heading">
+          <div>
+            <span class="section-label">ALAMAT AKTIF</span>
+            <p>Siap menerima email selama 24 jam</p>
+          </div>
+          <button class="icon-button" id="refreshBtn" type="button" title="Perbarui inbox" aria-label="Perbarui inbox">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>
+          </button>
+        </div>
+
+        <div class="address-row">
+          <div class="address-value" id="addressText" aria-live="polite">Menyiapkan alamat…</div>
+          <button class="button button-primary" id="copyBtn" type="button">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
+            Salin alamat
+          </button>
+        </div>
+
+        <div class="address-tools">
+          <label class="field-label" for="domainSelect">Domain</label>
+          <select class="select" id="domainSelect" aria-label="Pilih domain email"></select>
+          <button class="button button-secondary" id="genBtn" type="button">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></svg>
+            Alamat baru
+          </button>
+          <button class="button button-quiet" id="customToggle" type="button" aria-expanded="false" aria-controls="customForm">
+            Gunakan nama sendiri
+          </button>
+        </div>
+
+        <form class="custom-form" id="customForm" hidden>
+          <div class="custom-field">
+            <label for="customUser">Nama alamat</label>
+            <div class="custom-input-wrap">
+              <input id="customUser" type="text" inputmode="email" autocomplete="off" maxlength="30" placeholder="nama-kamu" pattern="[a-z0-9._-]{3,30}">
+              <span>@</span>
+              <select id="customDomain" aria-label="Domain untuk alamat custom"></select>
+            </div>
+            <small>Gunakan 3–30 karakter: huruf kecil, angka, titik, garis bawah, atau tanda hubung.</small>
+          </div>
+          <div class="custom-actions">
+            <button class="button button-quiet" id="customCancel" type="button">Batal</button>
+            <button class="button button-primary" id="customSave" type="submit">Buat alamat</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="inbox-shell">
+        <aside class="message-panel" aria-label="Daftar email">
+          <div class="panel-header">
+            <div>
+              <span class="section-label">INBOX</span>
+              <h2 id="inboxTitle">Pesan masuk</h2>
+            </div>
+            <span class="message-count" id="inboxCount">0 pesan</span>
+          </div>
+
+          <div class="message-list" id="emailList" role="list">
+            <div class="empty-state" id="emptyState">
+              <span class="empty-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg>
+              </span>
+              <h3>Belum ada email</h3>
+              <p>Email baru akan muncul otomatis di sini.</p>
+            </div>
+          </div>
+        </aside>
+
+        <section class="viewer-panel" id="emailViewer" aria-label="Isi email">
+          <div class="viewer-empty" id="viewerEmpty">
+            <div class="viewer-empty-visual" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="m3 8 9 6 9-6"/></svg>
+            </div>
+            <h2>Pilih email untuk membacanya</h2>
+            <p>Isi pesan akan ditampilkan di area ini.</p>
+          </div>
+
+          <article class="email-content" id="emailContent" hidden>
+            <header class="email-header">
+              <div class="sender-avatar" id="senderAvatar" aria-hidden="true">?</div>
+              <div class="sender-meta">
+                <h2 id="emailSubject"></h2>
+                <p id="emailFrom"></p>
+                <time id="emailDate"></time>
+              </div>
+              <button class="icon-button icon-button-danger" id="deleteBtn" type="button" title="Hapus email" aria-label="Hapus email">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/></svg>
+              </button>
+            </header>
+
+            <div class="viewer-tabs" role="tablist" aria-label="Format email">
+              <button class="viewer-tab is-active" type="button" role="tab" aria-selected="true" data-tab="html">Tampilan email</button>
+              <button class="viewer-tab" type="button" role="tab" aria-selected="false" data-tab="text">Teks asli</button>
+            </div>
+
+            <div class="email-body">
+              <iframe id="emailFrame" title="Konten email" sandbox="allow-same-origin"></iframe>
+              <pre id="emailText" hidden></pre>
+            </div>
+
+            <div class="attachment-list" id="attachmentList" hidden></div>
+          </article>
+        </section>
+      </div>
+    </section>
+
+    <section class="how-it-works" aria-labelledby="howTitle">
+      <div class="section-intro">
+        <span class="section-label">CARA KERJA</span>
+        <h2 id="howTitle">Siap dipakai dalam tiga langkah.</h2>
+      </div>
+      <ol class="steps">
+        <li><span>01</span><div><h3>Salin alamat</h3><p>Gunakan alamat yang sudah dibuat otomatis di atas.</p></div></li>
+        <li><span>02</span><div><h3>Gunakan seperlunya</h3><p>Masukkan alamat saat mendaftar atau menerima kode verifikasi.</p></div></li>
+        <li><span>03</span><div><h3>Baca pesan</h3><p>Email masuk tampil di inbox tanpa perlu memuat ulang halaman.</p></div></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <a class="brand brand-small" href="/">
+        <img src="/logo-mark.png" alt="" width="24" height="24">
+        <span>NOXXY</span>
+      </a>
+      <p>Email sementara untuk aktivitas online yang lebih tenang.</p>
+    </div>
+    <p>© <span id="currentYear"></span> NOXXY TECH. Gunakan secara bertanggung jawab.</p>
+  </footer>
+
+  <div class="toast-region" id="toasts" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="loading-screen" id="loadingScreen" role="status" aria-live="polite">
+    <div class="loading-card">
+      <img src="/logo-mark.png" alt="" width="40" height="40">
+      <div>
+        <strong>Menyiapkan inbox</strong>
+        <span>Hanya perlu beberapa detik</span>
+      </div>
+      <span class="spinner" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <script src="/js/home.js" defer></script>
+</body>
+</html>

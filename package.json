@@ -1,0 +1,18 @@
+{
+  "name": "noxxy",
+  "version": "1.0.0",
+  "description": "NOXXY - Enterprise Temporary Email Platform",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "mailparser": "^3.9.11",
+    "mongoose": "^8.24.1",
+    "nanoid": "^3.3.15"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
