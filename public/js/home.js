@@ -71,9 +71,9 @@ function showToast(message, type = "info", duration = 3000) {
 function setStatus(status) {
   const element = byId("serviceStatus");
   const labels = {
-    online: "Inbox aktif",
-    connecting: "Menghubungkan",
-    offline: "Koneksi terputus"
+    online: "Lagi aktif",
+    connecting: "Nyambungin…",
+    offline: "Lagi offline"
   };
 
   element.className = `service-status is-${status}`;
@@ -189,7 +189,7 @@ async function createInbox(username = null, domain = null) {
     }
 
     syncInbox(payload.inbox, payload.emails || []);
-    showToast("Inbox siap digunakan", "success");
+    showToast("Inbox ready. Langsung gas!", "success");
   } catch (error) {
     setStatus("offline");
     byId("addressText").textContent = "Gagal menyiapkan alamat";
@@ -389,7 +389,7 @@ async function copyAddress() {
   if (!state.address) return;
   try {
     await navigator.clipboard.writeText(state.address);
-    showToast("Alamat berhasil disalin", "success");
+    showToast("Alamat udah di-copy!", "success");
   } catch {
     const fallback = document.createElement("textarea");
     fallback.value = state.address;
@@ -399,7 +399,7 @@ async function copyAddress() {
     fallback.select();
     const copied = document.execCommand("copy");
     fallback.remove();
-    showToast(copied ? "Alamat berhasil disalin" : "Alamat gagal disalin", copied ? "success" : "error");
+    showToast(copied ? "Alamat udah di-copy!" : "Alamat gagal di-copy", copied ? "success" : "error");
   }
 }
 
