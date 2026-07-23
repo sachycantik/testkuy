@@ -71,9 +71,9 @@ function showToast(message, type = "info", duration = 3000) {
 function setStatus(status) {
   const element = byId("serviceStatus");
   const labels = {
-    online: "Lagi aktif",
-    connecting: "Nyambungin…",
-    offline: "Lagi offline"
+    online: "Ready",
+    connecting: "Connecting",
+    offline: "Offline"
   };
 
   element.className = `service-status is-${status}`;
@@ -289,6 +289,7 @@ function renderEmail(email) {
   const sender = email.from?.name || email.from?.address || "Pengirim tidak dikenal";
   const senderAddress = email.from?.address || "";
 
+  byId("emailViewer").hidden = false;
   byId("viewerEmpty").hidden = true;
   byId("emailContent").hidden = false;
   byId("senderAvatar").textContent = getInitials(sender);
@@ -357,6 +358,7 @@ function setViewerTab(tab) {
 function resetViewer() {
   state.selectedId = null;
   state.selectedEmail = null;
+  byId("emailViewer").hidden = true;
   byId("viewerEmpty").hidden = false;
   byId("emailContent").hidden = true;
 
