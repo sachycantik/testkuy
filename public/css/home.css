@@ -1,25 +1,29 @@
 :root {
   color-scheme: dark;
-  --bg: #080d18;
-  --bg-soft: #0c1322;
-  --surface: #111a2b;
-  --surface-raised: #162136;
-  --surface-hover: #1a2740;
-  --line: #25324a;
-  --line-strong: #344563;
-  --text: #f5f7fb;
-  --text-soft: #aeb9cc;
-  --text-muted: #74829a;
-  --primary: #6d7cff;
-  --primary-hover: #8290ff;
-  --primary-soft: rgba(109, 124, 255, 0.12);
-  --success: #42d6a4;
+  --bg: #0b0712;
+  --bg-soft: #110b1d;
+  --surface: #171024;
+  --surface-raised: #1e1530;
+  --surface-hover: #281b3e;
+  --line: rgba(213, 190, 255, 0.13);
+  --line-strong: rgba(213, 190, 255, 0.24);
+  --text: #fffaff;
+  --text-soft: #c9bbd5;
+  --text-muted: #887a96;
+  --primary: #9b5cff;
+  --primary-hover: #ad7aff;
+  --primary-soft: rgba(155, 92, 255, 0.14);
+  --pink: #ff4ecb;
+  --cyan: #54e7ff;
+  --lime: #c7ff5e;
+  --success: #68e6bc;
   --danger: #fb7185;
   --warning: #fbbf24;
-  --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
-  --radius-sm: 8px;
-  --radius: 12px;
-  --radius-lg: 18px;
+  --brand-gradient: linear-gradient(120deg, var(--pink), var(--primary) 54%, var(--cyan));
+  --shadow: 0 28px 90px rgba(0, 0, 0, 0.46);
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 26px;
   --page: 1180px;
   --font: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -38,12 +42,26 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 50% -20%, rgba(109, 124, 255, 0.17), transparent 34rem),
+    radial-gradient(circle at 12% 5%, rgba(255, 78, 203, 0.2), transparent 24rem),
+    radial-gradient(circle at 82% -8%, rgba(84, 231, 255, 0.14), transparent 27rem),
+    radial-gradient(circle at 52% 15%, rgba(155, 92, 255, 0.19), transparent 35rem),
     var(--bg);
   color: var(--text);
   font-family: var(--font);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.7) 0.6px, transparent 0.6px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(to bottom, #000, transparent 75%);
 }
 
 button,
@@ -91,8 +109,8 @@ a:focus-visible {
   position: sticky;
   top: 0;
   z-index: 50;
-  border-bottom: 1px solid rgba(37, 50, 74, 0.7);
-  background: rgba(8, 13, 24, 0.82);
+  border-bottom: 1px solid var(--line);
+  background: rgba(11, 7, 18, 0.78);
   backdrop-filter: blur(18px);
 }
 
@@ -126,13 +144,32 @@ a:focus-visible {
   display: grid;
   place-items: center;
   border: 1px solid var(--line);
-  border-radius: 11px;
-  background: var(--surface);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.08), 0 8px 24px rgba(155, 92, 255, 0.16);
 }
 
 .brand img {
   display: block;
   object-fit: contain;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.header-tag {
+  padding: 7px 10px;
+  border: 1px solid rgba(199, 255, 94, 0.28);
+  border-radius: 999px;
+  background: rgba(199, 255, 94, 0.08);
+  color: var(--lime);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.09em;
 }
 
 .brand-small {
@@ -148,7 +185,7 @@ a:focus-visible {
   padding: 0 12px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(17, 26, 43, 0.82);
+  background: rgba(23, 16, 36, 0.86);
   color: var(--text-soft);
   font-size: 12px;
   font-weight: 700;
@@ -190,7 +227,7 @@ main {
   align-items: flex-end;
   justify-content: space-between;
   gap: 48px;
-  padding: 82px 0 48px;
+  padding: 96px 0 54px;
 }
 
 .hero-copy {
@@ -200,18 +237,18 @@ main {
 .eyebrow,
 .section-label {
   display: block;
-  color: #9ca8ff;
+  color: #d3b2ff;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.16em;
 }
 
 .hero h1 {
-  max-width: 650px;
+  max-width: 700px;
   margin: 14px 0 18px;
-  font-size: clamp(38px, 5.5vw, 66px);
-  line-height: 1.04;
-  letter-spacing: -0.05em;
+  font-size: clamp(42px, 6vw, 74px);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
 }
 
 .hero-copy > p {
@@ -221,9 +258,20 @@ main {
   font-size: clamp(16px, 2vw, 19px);
 }
 
+.hero-accent {
+  display: inline-block;
+  padding-right: 0.06em;
+  background: var(--brand-gradient);
+  background-size: 180% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shift-gradient 5s linear infinite;
+}
+
 .trust-list {
   display: grid;
-  gap: 13px;
+  gap: 10px;
   padding-bottom: 8px;
   color: var(--text-soft);
   font-size: 13px;
@@ -234,7 +282,21 @@ main {
 .trust-list span {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+  transform: rotate(-1deg);
+}
+
+.trust-list span:nth-child(2) {
+  transform: translateX(16px) rotate(1.5deg);
+}
+
+.trust-list span:nth-child(3) {
+  transform: translateX(-6px) rotate(-0.5deg);
 }
 
 .trust-list svg {
@@ -248,6 +310,7 @@ main {
 }
 
 .mailbox {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -255,10 +318,25 @@ main {
   box-shadow: var(--shadow);
 }
 
+.mailbox::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 8%;
+  left: 8%;
+  z-index: 2;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pink), var(--cyan), transparent);
+  opacity: 0.85;
+}
+
 .address-panel {
-  padding: 28px 30px;
+  padding: 30px;
   border-bottom: 1px solid var(--line);
-  background: var(--surface-raised);
+  background:
+    radial-gradient(circle at 100% 0, rgba(84, 231, 255, 0.08), transparent 18rem),
+    radial-gradient(circle at 0 100%, rgba(255, 78, 203, 0.08), transparent 20rem),
+    var(--surface-raised);
 }
 
 .address-heading,
@@ -295,12 +373,12 @@ main {
   padding: 0 16px;
   overflow: hidden;
   border: 1px solid var(--line-strong);
-  border-radius: 10px;
-  background: var(--bg-soft);
+  border-radius: 14px;
+  background: rgba(8, 4, 14, 0.68);
   color: var(--text);
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-size: clamp(14px, 2vw, 17px);
-  font-weight: 650;
+  font-weight: 750;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -323,7 +401,7 @@ main {
 .select,
 .custom-input-wrap {
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: 13px;
   transition: border-color 150ms ease, background 150ms ease, color 150ms ease, transform 150ms ease;
 }
 
@@ -335,7 +413,7 @@ main {
   gap: 8px;
   padding: 0 15px;
   font-size: 13px;
-  font-weight: 750;
+  font-weight: 800;
 }
 
 .button svg,
@@ -355,18 +433,24 @@ main {
 }
 
 .button-primary {
-  background: var(--primary);
+  background: var(--brand-gradient);
   color: #fff;
+  box-shadow: 0 10px 28px rgba(155, 92, 255, 0.26);
 }
 
 .button-primary:hover {
-  background: var(--primary-hover);
+  filter: brightness(1.09) saturate(1.08);
+  transform: translateY(-1px);
 }
 
 .button-secondary {
   border-color: var(--line-strong);
   background: var(--surface);
   color: var(--text);
+}
+
+.button-secondary svg {
+  color: var(--lime);
 }
 
 .button-secondary:hover,
@@ -431,7 +515,7 @@ main {
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: rgba(11, 7, 18, 0.46);
 }
 
 .custom-field {
@@ -500,7 +584,7 @@ main {
 .message-panel {
   min-width: 0;
   border-right: 1px solid var(--line);
-  background: var(--bg-soft);
+  background: rgba(11, 7, 18, 0.62);
 }
 
 .panel-header {
@@ -519,9 +603,10 @@ main {
 
 .message-count {
   padding: 5px 9px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(84, 231, 255, 0.2);
   border-radius: 999px;
-  color: var(--text-muted);
+  background: rgba(84, 231, 255, 0.07);
+  color: var(--cyan);
   font-size: 11px;
   font-weight: 750;
 }
@@ -549,9 +634,9 @@ main {
   place-items: center;
   margin-bottom: 16px;
   border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--surface);
-  color: var(--text-muted);
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255, 78, 203, 0.14), rgba(84, 231, 255, 0.09));
+  color: #d6bdff;
 }
 
 .empty-icon svg,
@@ -591,14 +676,16 @@ main {
   background: transparent;
   color: inherit;
   text-align: left;
+  transition: background 150ms ease, transform 150ms ease;
 }
 
 .message-card:hover {
   background: rgba(255, 255, 255, 0.025);
+  transform: translateX(3px);
 }
 
 .message-card.is-active {
-  background: var(--primary-soft);
+  background: linear-gradient(90deg, rgba(255, 78, 203, 0.1), rgba(155, 92, 255, 0.11));
 }
 
 .message-card.is-active::before,
@@ -609,7 +696,7 @@ main {
   bottom: 0;
   left: 0;
   width: 2px;
-  background: var(--primary);
+  background: var(--brand-gradient);
 }
 
 .message-avatar,
@@ -619,8 +706,8 @@ main {
   flex: 0 0 auto;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 11px;
-  background: #263452;
-  color: #e9edff;
+  background: linear-gradient(145deg, #522c82, #2f255d);
+  color: #f7eaff;
   font-size: 12px;
   font-weight: 800;
 }
@@ -717,8 +804,10 @@ main {
   margin-bottom: 20px;
   border: 1px solid var(--line);
   border-radius: 20px;
-  background: var(--bg-soft);
-  color: var(--text-muted);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 78, 203, 0.16), transparent 60%),
+    var(--bg-soft);
+  color: #d6bdff;
 }
 
 .email-content {
@@ -736,8 +825,8 @@ main {
   width: 44px;
   height: 44px;
   border-radius: 13px;
-  background: var(--primary-soft);
-  color: #bbc3ff;
+  background: linear-gradient(145deg, rgba(255, 78, 203, 0.2), rgba(84, 231, 255, 0.12));
+  color: #f3d6ff;
 }
 
 .sender-meta {
@@ -801,7 +890,7 @@ main {
 }
 
 .viewer-tab.is-active::after {
-  background: var(--primary);
+  background: var(--brand-gradient);
 }
 
 .email-body {
@@ -878,6 +967,8 @@ main {
 }
 
 .steps li {
+  position: relative;
+  overflow: hidden;
   min-height: 180px;
   display: flex;
   gap: 18px;
@@ -885,8 +976,27 @@ main {
   background: var(--surface);
 }
 
+.steps li::after {
+  content: "";
+  position: absolute;
+  right: -48px;
+  bottom: -58px;
+  width: 100px;
+  height: 100px;
+  border: 18px solid rgba(255, 78, 203, 0.07);
+  border-radius: 50%;
+}
+
+.steps li:nth-child(2)::after {
+  border-color: rgba(155, 92, 255, 0.1);
+}
+
+.steps li:nth-child(3)::after {
+  border-color: rgba(84, 231, 255, 0.08);
+}
+
 .steps li > span {
-  color: #9ca8ff;
+  color: var(--lime);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -938,7 +1048,7 @@ main {
   padding: 12px 14px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
-  background: #182238;
+  background: #211531;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
   color: var(--text);
   font-size: 12px;
@@ -982,7 +1092,7 @@ main {
   gap: 14px;
   padding: 18px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 18px;
   background: var(--surface);
   box-shadow: var(--shadow);
 }
@@ -1011,13 +1121,17 @@ main {
   width: 18px;
   height: 18px;
   border: 2px solid var(--line-strong);
-  border-top-color: var(--primary);
+  border-top-color: var(--pink);
   border-radius: 50%;
   animation: spin 700ms linear infinite;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+@keyframes shift-gradient {
+  to { background-position: 180% center; }
 }
 
 @keyframes toast-in {
@@ -1089,6 +1203,13 @@ main {
 
   .trust-list {
     grid-template-columns: 1fr;
+  }
+
+  .trust-list span,
+  .trust-list span:nth-child(2),
+  .trust-list span:nth-child(3) {
+    width: max-content;
+    transform: none;
   }
 
   .address-panel {
@@ -1164,6 +1285,22 @@ main {
 
   .site-footer > p {
     text-align: left;
+  }
+}
+
+@media (max-width: 430px) {
+  .header-tag {
+    display: none;
+  }
+
+  .service-status {
+    padding-inline: 10px;
+  }
+
+  .address-tools .select,
+  .address-tools .button-secondary {
+    width: 100%;
+    flex: none;
   }
 }
 
